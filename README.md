@@ -3,7 +3,7 @@
 <h2>Instalação</h2>
 Clone esse repositorio em algum lugar da sua maquina, e adicione no seu .bash_profile a seguinte linha:
 
-<code>source <directory>/codereview/code_review_commands.sh</code>
+<code>source {installation-directory}/codereview/code_review_commands.sh</code>
 
 <h2>Comandos</h2>
 
@@ -13,7 +13,7 @@ Clone esse repositorio em algum lugar da sua maquina, e adicione no seu .bash_pr
         preparada pra criar um pull request.
         Se a master tiver commits, eles são movidos para essa nova branch e removidos
         da master.
-        Se voce adicionar <code>--push</code> já são executadas as ações listadas no comando abaixo.
+        Se voce adicionar --push já são executadas as ações listadas no comando abaixo.
 
 <code>codereview --push</code>
 
