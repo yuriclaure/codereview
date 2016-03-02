@@ -77,7 +77,7 @@ __codereview_create_pull_request() {
         \"targetRefName\":\"refs/heads/master\",
         \"title\":\"${title}\",
         \"description\":\"${description}\"
-    }" &> /dev/null);
+    }" 2> /dev/null);
 
 		if ! [ $? = 0 ];
 			then
