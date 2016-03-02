@@ -67,13 +67,21 @@ __codereview_create_pull_request() {
 		read -p "Descrição da pull request: " -r;
 		description=$REPLY
 
-		curl --ntlm -u : -X POST -i -H "Content-type: application/json" -X POST http://tfs01:8080/tfs/DigithoBrasil/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 -d "
+		create_pull_request_output=$(curl --ntlm -u : -X POST -i -H "Content-type: application/json" -X POST http://tfs01:8080/tfs/DigithoBrasil/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 -d "
     {
         \"sourceRefName\":\"refs/heads/${current_git_branch}\",
         \"targetRefName\":\"refs/heads/master\",
         \"title\":\"${title}\",
         \"description\":\"${description}\"
-    }" &> /dev/null
+    }" &> /dev/null);
+
+		if ! [ $? = 0 ];
+			then
+			printf "${GREEN}Erro ao criar pull request.${NC}\n";
+			printf "$create_pull_request_output";
+			return;
+		fi
+
 
 		printf "${GREEN}Pull request criada com sucesso.${NC}"
 	fi
