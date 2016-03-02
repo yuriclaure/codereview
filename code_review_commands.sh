@@ -9,6 +9,7 @@ __codereview_finish() {
 
 	printf "Finalizar essa code review ira deletar essa branch e irá descartar as mudanças que nao foram merged na master.\n";
 	read -p "Você tem certeza que quer fazer isso [Y/N]? " -n 1 -r;
+	echo " "
 	if [[ ! $REPLY =~ ^[Yy]$ ]];
 	then
 	    return;
@@ -23,14 +24,14 @@ __codereview_finish() {
 }
 
 __codereview_help() {
-	printf "codereview <branch_name> [--push]\n"
-	printf "\tCria (ou altera) uma branch com o nome <branch_name> para criar um pull request."
-	printf "\tSe a master tiver commits, eles são movidos para essa nova branch."
-	printf "\tSe voce adicionar --push ele já envia para o servidor as alterações.\n"
-	printf "codereview --push"
-	printf "\tEnvia os commits na branch atual para o servidor e cria um pull request (ou atualiza um existente).\n"
-	printf "codereview --finish"
-	printf "\tFinaliza o code review deletando a branch atual e voltando para a master."
+	printf "codereview <branch_name> [--push]\n\n"
+	printf "\tCria (ou altera) uma branch com o nome <branch_name> para criar um pull request.\n"
+	printf "\tSe a master tiver commits, eles são movidos para essa nova branch.\n"
+	printf "\tSe voce adicionar --push ele já envia para o servidor as alterações.\n\n"
+	printf "codereview --push\n\n"
+	printf "\tEnvia os commits na branch atual para o servidor e cria um pull request (ou atualiza um existente).\n\n"
+	printf "codereview --finish\n\n"
+	printf "\tFinaliza o code review deletando a branch atual e voltando para a master.\n"
 	return;
 }
 
@@ -122,7 +123,7 @@ __codereview() {
 	if [ -z "$1" ];
 		then
 		echo "Você precisa informar o nome da branch para onde a code review será instanciada. Exemplo:";
-		printf "\n\tcodereview novo_botao\n";
+		printf "\n\tcodereview novo_botao\n\n";
 		printf "Veja --help para mais ajuda.";
 		return;
 	fi
@@ -138,7 +139,7 @@ __codereview() {
 		return;
 	fi
 
-	local should_it_push=false;
+	should_it_push=false;
 
 	if [ $# -gt 2 ];
 		then
@@ -176,7 +177,7 @@ __codereview() {
 		then
 		printf "${RED}Uma branch com o nome de $name_of_work já existe!${NC}\n${NC}";
 		read -p "Você deseja realizar um merge da master nessa branch [Y/N]? " -n 1 -r;
-		echo ""
+		echo " "
 		if [[ ! $REPLY =~ ^[Yy]$ ]];
 		then
 		    return;
@@ -207,7 +208,7 @@ __codereview() {
 		git checkout $name_of_work &> /dev/null;
 	fi
 
-	if [ should_it_push = true ];
+	if [ $should_it_push = true ];
 		then
 		__codereview_push_and_create;
 	else
