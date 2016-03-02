@@ -120,6 +120,13 @@ __codereview_check_options() {
 
 __codereview() {
 
+	git status &> /dev/null
+	if ! [ $? = 0 ];
+		then
+		printf "${RED}Você não está em um repositorio git.${NC}\n";
+		return;
+	fi
+
 	if [ -z "$1" ];
 		then
 		echo "Você precisa informar o nome da branch para onde a code review será instanciada. Exemplo:";
@@ -158,6 +165,7 @@ __codereview() {
 
 	name_of_work=$1;
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+
 
 	# switching to master before creating new branch
 	if ! [ $current_git_branch = "master" ];
