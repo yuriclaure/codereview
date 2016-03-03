@@ -35,13 +35,13 @@ __create_pull_request() {
 
 		read -p "Título da pull request [obrigatório]: " -r;
 		title=$REPLY
-		while [ -z $title ]; do
+		while [ -z "$title" ]; do
 			read -p "Título da pull request [obrigatório]: " -r;
 			title=$REPLY
 		done
 		read -p "Descrição da pull request [enter para deixar em branco]: " -r;
 		description=$REPLY
-		if [ -z $description ]; then
+		if [ -z "$description" ]; then
 			description=""
 		fi
 
