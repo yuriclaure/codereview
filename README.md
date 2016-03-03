@@ -7,7 +7,7 @@ Clone esse repositorio em algum lugar da sua maquina, e adicione no seu .bash_pr
 
 <h2>Comandos</h2>
 
-<code>codereview <branch_name> [--push]</code>
+<code>codereview \<branch_name\> [--push]</code>
 
         Cria (ou altera) uma branch a partir da master com o nome <branch_name>
         preparada pra criar um pull request.
