@@ -1,3 +1,30 @@
+__check_git_repo() {
+	git status &> /dev/null
+	if ! [ $? = 0 ];
+		then
+		printf "${RED}Você não está em um repositorio git.${NC}\n";
+		return 0;
+	fi
+
+	return 1;
+}
+
+__check_parameters() {
+
+	if [ $# = 0 ]; then
+		__help;
+		return 0;
+	fi
+
+	command=$1
+	if [ "$command" = "create" ] && [ $# -lt 2 ]; then
+		printf "${RED}Você precisa informar o nome da branch com o comando create. Execute codereview help para ajuda.${NC}\n";
+		return 0;
+	fi
+
+	return 1;
+}
+
 __check_updates() {
 	
 	CURRENT_FOLDER="$(pwd)"
