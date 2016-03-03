@@ -22,5 +22,3 @@ Clone esse repositorio em algum lugar da sua maquina, e adicione no seu .bash_pr
 <code>codereview --finish</code>
 
         Finaliza o code review deletando a branch atual e voltando para a master.
-
-
