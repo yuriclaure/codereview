@@ -4,6 +4,7 @@ NC='\033[0m'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+source $DIR/check_updates.sh
 source $DIR/code_review_utils.sh
 source $DIR/code_review_finish.sh
 source $DIR/code_review_help.sh

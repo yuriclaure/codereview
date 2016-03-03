@@ -1,5 +1,7 @@
 __codereview() {
 
+	__check_updates;
+
 	if __codereview_check_git_repo;
 		then
 		return
