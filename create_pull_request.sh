@@ -1,4 +1,4 @@
-__codereview_create_pull_request() {
+__create_pull_request() {
 	declare -A repositories_id=( 
 		["http://tfs01:8080/tfs/DigithoBrasil/Solu%C3%A7%C3%B5es%20em%20Software/_git/Domus-Contemplados"]="e5d33934-6334-4845-ade3-37b255d93dfe" 
 		["http://tfs01:8080/tfs/DigithoBrasil/Solu%C3%A7%C3%B5es%20em%20Software/_git/Domus-Inscricao"]="1a92b651-ba36-46e8-8a82-0ba44e953488"

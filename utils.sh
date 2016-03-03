@@ -1,4 +1,4 @@
-__codereview_reset_master() {
+__reset_master() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if ! [ $current_git_branch = "master" ];
@@ -10,7 +10,7 @@ __codereview_reset_master() {
 	fi
 }
 
-__codereview_move_to_branch() {
+__move_to_branch() {
 	branch=$1
 
 	changing_to_branch_output=$(git checkout $branch 2>&1);
@@ -24,7 +24,7 @@ __codereview_move_to_branch() {
 	return 1;
 }
 
-__codereview_check_git_repo() {
+__check_git_repo() {
 	git status &> /dev/null
 	if ! [ $? = 0 ];
 		then
@@ -35,7 +35,7 @@ __codereview_check_git_repo() {
 	return 1;
 }
 
-__codereview_check_parameters() {
+__check_parameters() {
 	if [ $# -gt 2 ];
 		then
 		printf "${RED}Número de parametros incompatível. Veja --help para ajuda.${NC}\n";

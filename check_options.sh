@@ -1,17 +1,17 @@
-__codereview_check_options() {
+__check_options() {
 	option=$1
 
 	if [[ $option == "--"* ]];
 		then
 		if [ $option = "--push" ];
 			then
-			__codereview_push;
+			__push;
 		elif [ $option = "--finish" ]; 
 			then
-			__codereview_finish;
+			__finish;
 		elif [ $option = "--help" ];
 			then
-			__codereview_help;
+			__help;
 		else
 			printf "${RED}Parametro $option não reconhecido. Veja --help para ajuda.${NC}\n";
 		fi

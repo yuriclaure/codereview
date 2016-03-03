@@ -1,4 +1,4 @@
-__codereview_push() {
+__push() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if [ $current_git_branch = "master" ];
@@ -15,5 +15,5 @@ __codereview_push() {
 		return;
 	fi
 
-	__codereview_create_pull_request;
+	__create_pull_request;
 }

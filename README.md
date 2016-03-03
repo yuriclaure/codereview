@@ -3,7 +3,7 @@
 <h2>Instalação</h2>
 Clone esse repositorio em algum lugar da sua maquina, e adicione no seu .bash_profile a seguinte linha:
 
-<code>source {installation-directory}/codereview/code_review_commands.sh</code>
+<code>source {installation-directory}/codereview/main.sh</code>
 
 <h2>Comandos</h2>
 

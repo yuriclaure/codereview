@@ -1,16 +1,18 @@
 __codereview() {
 
-	if __codereview_check_git_repo;
+	__check_updates;
+
+	if __check_git_repo;
 		then
 		return
 	fi
 
-	if __codereview_check_parameters $@;
+	if __check_parameters $@;
 		then
 		return
 	fi
 
-	if __codereview_check_options $1;
+	if __check_options $1;
 		then
 		return
 	fi
@@ -28,7 +30,7 @@ __codereview() {
 	# switching to master before creating new branch
 	if ! [ $current_git_branch = "master" ];
 		then
-		if __codereview_move_to_branch master;
+		if __move_to_branch master;
 			then
 			return
 		fi
@@ -54,7 +56,7 @@ __codereview() {
 		    return;
 		fi
 
-		if __codereview_move_to_branch $name_of_work;
+		if __move_to_branch $name_of_work;
 			then
 			return
 		fi
@@ -62,23 +64,23 @@ __codereview() {
 		git merge master
 		if [ $? = 0 ];
 			then
-			__codereview_reset_master;
+			__reset_master;
 		else
 			return;
 		fi
 	else
 		git branch $name_of_work &> /dev/null;
-		if __codereview_move_to_branch $name_of_work;
+		if __move_to_branch $name_of_work;
 			then
 			return
 		fi
 
-		__codereview_reset_master;
+		__reset_master;
 	fi
 
 	if [ $should_it_push = true ];
 		then
-		__codereview_push;
+		__push;
 	else
 		printf "${GREEN}Branch criada e pronta para ser usada para a code review. \nExecute ${RED}codereview --push${GREEN} quando estiver pronto.${NC}\n";
 	fi
