@@ -3,6 +3,7 @@ __check_updates() {
 	CURRENT_FOLDER="$(pwd)"
 
 	cd $DIR &> /dev/null
+	git remote update &> /dev/null
 	UPDATES=$(git rev-list HEAD...origin/master --count)
 	
 	if [ $UPDATES != 0 ]; then
