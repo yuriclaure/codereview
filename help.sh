@@ -1,4 +1,4 @@
-__codereview_help() {
+__help() {
 	printf "codereview <branch_name> [--push]\n\n"
 	printf "\tCria (ou altera) uma branch a partir da master com o nome <branch_name> preparada pra criar um pull request.\n"
 	printf "\tSe a master tiver commits, eles são movidos para essa nova branch e removidos da master.\n"

@@ -1,4 +1,4 @@
-__codereview_finish() {
+__finish() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if [ $current_git_branch = "master" ];
