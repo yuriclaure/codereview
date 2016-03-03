@@ -33,10 +33,17 @@ __create_pull_request() {
 	else
 		printf "${GREEN}Criando pull request${NC}\n";
 
-		read -p "Título da pull request: " -r;
+		read -p "Título da pull request [obrigatório]: " -r;
 		title=$REPLY
-		read -p "Descrição da pull request: " -r;
+		while [ -z $title ]; do
+			read -p "Título da pull request [obrigatório]: " -r;
+			title=$REPLY
+		done
+		read -p "Descrição da pull request [enter para deixar em branco]: " -r;
 		description=$REPLY
+		if [ -z $description ]; then
+			description=""
+		fi
 
 		create_pull_request_output=$(curl --ntlm -u : -X POST -i -H "Content-type: application/json" -X POST http://tfs01:8080/tfs/DigithoBrasil/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 -d "
 		    {
