@@ -1,8 +1,7 @@
 __finish() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
-	if [ $current_git_branch = "master" ];
-		then
+	if [ $current_git_branch = "master" ]; then
 		printf "${RED}Você não pode finalizar code reviews na master.${NC}";
 		return;
 	fi
@@ -10,8 +9,7 @@ __finish() {
 	printf "Finalizar essa code review ira deletar essa branch e irá descartar as mudanças que nao foram merged na master.\n";
 	read -p "Você tem certeza que quer fazer isso [Y/N]? " -n 1 -r;
 	echo " "
-	if [[ ! $REPLY =~ ^[Yy]$ ]];
-	then
+	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 	    return;
 	fi
 

@@ -1,7 +1,6 @@
 __check_git_repo() {
 	git status &> /dev/null
-	if ! [ $? = 0 ];
-		then
+	if ! [ $? = 0 ]; then
 		printf "${RED}Você não está em um repositorio git.${NC}\n";
 		return 0;
 	fi
@@ -34,15 +33,14 @@ __check_updates() {
 	UPDATES=$(git rev-list HEAD...origin/master --count)
 	
 	if [ $UPDATES != 0 ]; then
-		echo "Iniciando atualização do CodeReview..."
+		echo "Atualizando comando..."
 
 		git pull origin master &> /dev/null
-
 		if [ $? = 0 ]; then
-			cd source ~/.bash_profile &> /dev/null
-			echo "Fim da atualização do CodeReview."
+			source ~/.bash_profile &> /dev/null
+			echo "Fim da atualização."
 		else
-			echo "Não foi possível atualizar o CodeReview!"
+			echo "Erro na atualização."
 		fi
 	fi	
 
