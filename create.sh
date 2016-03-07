@@ -1,5 +1,5 @@
 __create() {
-	if __require_clean_work_tree; then
+	if __check_clean_work_tree; then
 		return;
 	fi
 	

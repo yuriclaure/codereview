@@ -1,8 +1,8 @@
 __push() {
-	if __require_clean_work_tree; then
+	if __check_clean_work_tree; then
 		return;
 	fi
-	
+
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if [ $current_git_branch = "master" ]; then
@@ -22,14 +22,8 @@ __push() {
 
 __create_pull_request() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
-	current_repo=$(git config remote.origin.url 2>&1)
-	current_repo_id=${repositories_id["${current_repo}"]}
-
-	list_of_pull_requests=$(curl --ntlm -u : http://tfs01:8080/tfs/DigithoBrasil/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 2> /dev/null)
-
-	# if there is already an active pull request for the same branch
-	printf "$list_of_pull_requests" | grep -q "\"sourceRefName\":\"refs/heads/$current_git_branch\",\"targetRefName\":\"refs/heads/master\""
-	if [ $? = 0 ]; then
+	
+	if __has_active_pull_request_for $current_git_branch; then
 		printf "${GREEN}Pull request atualizada com sucesso.${NC}"
 	else
 		printf "${GREEN}Criando pull request${NC}\n";

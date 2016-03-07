@@ -48,32 +48,3 @@ __remove_accents_from_reply() {
 	REPLY=$(echo $REPLY | iconv -f utf-8 -t ascii//TRANSLIT);
 }
 
-__require_clean_work_tree() {
-    # Update the index
-    git update-index -q --ignore-submodules --refresh
-    err=0
-
-    # Disallow unstaged changes in the working tree
-    if ! git diff-files --quiet --ignore-submodules --
-    then
-        printf "${RED}Erro: você tem alterações não commitadas${NC}\n"
-        git diff-files --name-status -r --ignore-submodules -- >&2
-        err=1
-    fi
-
-    # Disallow uncommitted changes in the index
-    if ! git diff-index --cached --quiet HEAD --ignore-submodules --
-    then
-        printf "${RED}Erro: você tem alterações não commitadas${NC}\n"
-        git diff-index --cached --name-status -r --ignore-submodules HEAD -- >&2
-        err=1
-    fi
-
-    if [ $err = 1 ]
-    then
-        echo >&2 "Por favor, faça um commit ou um stash das mudanças antes de continuar"
-        return 0;
-    fi
-
-    return 1;
-}
