@@ -1,4 +1,8 @@
 __finish() {
+	if __require_clean_work_tree; then
+		return;
+	fi
+	
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if [ $current_git_branch = "master" ]; then

@@ -1,4 +1,8 @@
 __push() {
+	if __require_clean_work_tree; then
+		return;
+	fi
+	
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if [ $current_git_branch = "master" ]; then
@@ -26,7 +30,7 @@ __create_pull_request() {
 	# if there is already an active pull request for the same branch
 	printf "$list_of_pull_requests" | grep -q "\"sourceRefName\":\"refs/heads/$current_git_branch\",\"targetRefName\":\"refs/heads/master\""
 	if [ $? = 0 ]; then
-			printf "${GREEN}Pull request atualizada com sucesso.${NC}"
+		printf "${GREEN}Pull request atualizada com sucesso.${NC}"
 	else
 		printf "${GREEN}Criando pull request${NC}\n";
 

@@ -1,4 +1,8 @@
 __create() {
+	if __require_clean_work_tree; then
+		return;
+	fi
+	
 	name_of_work=$1;
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
