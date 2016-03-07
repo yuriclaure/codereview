@@ -22,6 +22,8 @@ __push() {
 
 __create_pull_request() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+	current_repo=$(git config remote.origin.url 2>&1);
+	current_repo_id=${repositories_id["${current_repo}"]};
 	
 	if __has_active_pull_request_for $current_git_branch; then
 		printf "${GREEN}Pull request atualizada com sucesso.${NC}"
