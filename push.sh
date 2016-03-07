@@ -36,7 +36,6 @@ __create_pull_request() {
 		description=$REPLY;
 
 		body="{\"sourceRefName\":\"refs/heads/${current_git_branch}\",\"targetRefName\":\"refs/heads/master\",\"title\":\"${title}\",\"description\":\"${description}\"}";
-		echo $body
 		RESPONSE_HTTP_CODE=$(curl -sw "%{http_code}" -o /dev/null --ntlm -u : -X POST -H "Content-type: application/json; charset=utf-8" http://tfs01:8080/tfs/DigithoBrasil/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 -d "${body}");
 
 		if ! [ $RESPONSE_HTTP_CODE = 201 ]; then
