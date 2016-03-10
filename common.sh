@@ -34,8 +34,6 @@ __get_required_input() {
 	while [ -z "$REPLY" ]; do
 		read -p "$input_message [obrigatório]: " -r;
 	done
-
-	__remove_accents_from_reply;
 }
 
 __get_optional_input() {
@@ -45,11 +43,10 @@ __get_optional_input() {
 	if [ -z "$REPLY" ]; then
 		REPLY=""
 	fi
-
-	__remove_accents_from_reply;
 }
 
-__remove_accents_from_reply() {
-	REPLY=$(echo $REPLY | iconv -f utf-8 -t ascii//TRANSLIT);
+__encode_in_utf8() {
+	SOURCE=$1
+	REPLY=$(printf "$SOURCE" | iconv --from-code=ISO-8859-1 --to-code=UTF-8);
 }
 

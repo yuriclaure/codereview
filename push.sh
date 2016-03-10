@@ -31,12 +31,14 @@ __create_pull_request() {
 		printf "${GREEN}Criando pull request${NC}\n";
 
 		__get_required_input "Título da pull request";
+		__encode_in_utf8 "$REPLY";
 		title=$REPLY
 		__get_optional_input "Descrição da pull request";
+		__encode_in_utf8 "$REPLY";
 		description=$REPLY;
 
 		body="{\"sourceRefName\":\"refs/heads/${current_git_branch}\",\"targetRefName\":\"refs/heads/master\",\"title\":\"${title}\",\"description\":\"${description}\"}";
-		RESPONSE_HTTP_CODE=$(curl -sw "%{http_code}" -o /dev/null --ntlm -u : -X POST -H "Content-type: application/json; charset=utf-8" ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 -d "${body}");
+		RESPONSE_HTTP_CODE=$(curl -sw "%{http_code}" -o /dev/null --ntlm -u : -X POST -H "Content-type: application/json; charset=utf-8" ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 --data "${body}");
 
 		if ! [ $RESPONSE_HTTP_CODE = 201 ]; then
 			printf "${RED}Erro ao criar pull request.${NC}\n";
