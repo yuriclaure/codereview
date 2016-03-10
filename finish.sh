@@ -19,9 +19,9 @@ __finish() {
 	if __has_unpushed_commits; then
 		printf "${RED}Você tem commits não enviados ao branch remoto, essa ação irá descartar todas essas mudanças.${NC}\n";
 	else
-		printf "Você irá deletar essa branch e voltar para a master.\n";
+		printf "Você irá finalizar essa branch e voltar para a master.\n";
 	fi
-	
+
 	read -p "Você tem certeza que quer fazer isso [y/n]? " -n 1 -r;
 	echo " "
 	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
