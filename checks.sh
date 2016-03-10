@@ -82,7 +82,7 @@ __has_active_pull_request_for() {
 	current_repo=$(git config remote.origin.url 2>&1);
 	current_repo_id=${repositories_id["${current_repo}"]};
 
-	list_of_pull_requests=$(curl --ntlm -u : http://tfs01:8080/tfs/DigithoBrasil/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 2> /dev/null);
+	list_of_pull_requests=$(curl --ntlm -u : ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 2> /dev/null);
 
 	printf "$list_of_pull_requests" | grep -q "\"status\":\"active\",[\"[a-zA-Z]*\":.*,]*\"sourceRefName\":\"refs/heads/$current_git_branch\",\"targetRefName\":\"refs/heads/master\"";
 	PULL_REQUEST_IS_ACTIVE=$?;

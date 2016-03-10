@@ -1,3 +1,8 @@
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+CLEAR='\33[2K\r'
+
 __reset_master() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
