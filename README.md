@@ -8,7 +8,7 @@ a seguinte linha:
 
 Recarregue seu bash
 
-<code>source ~/.bash_profile</code>
+<code>$ source ~/.bash_profile</code>
 
 Informe sua url do TFS
 
