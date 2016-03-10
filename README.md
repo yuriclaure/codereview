@@ -12,7 +12,7 @@ Recarregue seu bash
 
 Informe sua url do TFS
 
-*Exemplo:* <code>http://\<url-do-tfs\>/\<collection\>/\<project\></code>
+<b>Exemplo:</b> <code>http://\<url-do-tfs\>/\<collection\>/\<project\></code>
 
 Aguarde a instalação e pronto!
 
