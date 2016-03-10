@@ -37,7 +37,7 @@ __check_updates() {
 
 		git pull origin master &> /dev/null
 		if [ $? = 0 ]; then
-			source ~/.bash_profile &> /dev/null
+			source ~/.bash_profile
 			echo "Fim da atualização."
 		else
 			echo "Erro na atualização."
