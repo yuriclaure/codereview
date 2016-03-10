@@ -5,6 +5,19 @@ Clone esse repositorio em algum lugar da sua maquina, e adicione no seu .bash_pr
 
 <code>source {installation-directory}/codereview/main.sh</code>
 
+<h2>Configure seus repositórios</h2>
+
+<code>
+	declare -A code_review_repositories_id;
+	code_review_repositories_id["endereco-do-repositorio"]="id-do-projeto-no-tfs";
+</code>
+
+		Você pode achar o <b>endereço do repositório</b> com o comando:
+
+		<code>
+			git config remote.origin.url
+		</code>
+
 <h2>Comandos</h2>
 
 <code>codereview create \<branch_name\></code>
