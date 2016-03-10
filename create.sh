@@ -6,6 +6,8 @@ __create() {
 	name_of_work=$1;
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
+	printf "Inicializando code review de $name_of_work...";
+
 	# switching to master before creating new branch
 	if ! [ $current_git_branch = "master" ]; then
 		if __move_to_branch master; then
@@ -16,8 +18,8 @@ __create() {
 	# pulling master to create new branch up-to-date.
 	pulling_master_output=$(git pull 2>&1);
 	if ! [ $? = 0 ]; then
-		printf "${RED}Conflitos ao atualizar master.${NC}\n";
-		printf "$changing_to_master_output";
+		printf "${CLEAR}${RED}Conflitos ao atualizar master.${NC}\n";
+		printf "$changing_to_master_output\n";
 		return;
 	fi
 
@@ -26,8 +28,8 @@ __create() {
 	if [ $? = 0 ]; then
 
 		# ask for user confirmation
-		printf "${RED}Uma branch com o nome de $name_of_work já existe!${NC}\n${NC}";
-		read -p "Você deseja realizar um merge da master nessa branch [Y/N]? " -n 1 -r;
+		printf "${CLEAR}${RED}Uma branch com o nome de $name_of_work já existe!${NC}\n";
+		read -p "Você deseja realizar um merge da master nessa branch [y/n]? " -n 1 -r;
 		echo " "
 		if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 		    return;
@@ -55,5 +57,6 @@ __create() {
 		__reset_master;
 	fi
 
-	printf "${GREEN}Branch criada e pronta para ser usada para a code review. \nExecute ${RED}cr push${GREEN} quando estiver pronto.${NC}\n";
+	printf "${CLEAR}${GREEN}Code review inicializada com sucesso.${NC}\n";
+	printf "Execute ${RED}cr push${NC} quando estiver pronto.\n";
 }

@@ -26,25 +26,25 @@ __check_parameters() {
 
 __check_updates() {
 	
-	CURRENT_FOLDER="$(pwd)"
+	CURRENT_FOLDER="$(pwd)";
 
-	cd $DIR &> /dev/null
-	git remote update &> /dev/null
-	UPDATES=$(git rev-list HEAD...origin/master --count)
+	cd $DIR &> /dev/null;
+	git remote update &> /dev/null;
+	UPDATES=$(git rev-list HEAD...origin/master --count);
 
 	if [ $UPDATES != 0 ]; then
-		echo "Atualizando comando..."
+		printf "Atualizando codereview...";
 
 		git pull origin master &> /dev/null
 		if [ $? = 0 ]; then
-			source $DIR/main.sh
-			echo "Fim da atualização."
+			source $DIR/main.sh;
+			printf "${CLEAR}${GREEN}Codereview atualizado com sucesso.${NC}\n";
 		else
-			echo "Erro na atualização."
+			printf "${CLEAR}${RED}Erro na atualização do codereview.${NC}\n";
 		fi
 	fi	
 
-	cd $CURRENT_FOLDER &> /dev/null
+	cd $CURRENT_FOLDER &> /dev/null;
 }
 
 __check_clean_work_tree() {

@@ -25,7 +25,7 @@ Aguarde a instalação e pronto!
         Se a master tiver commits, eles são movidos para essa nova branch e removidos
         da master.
 
-<code>cr push "\<pull_request_title\>"</code>
+<code>cr push "\<code_review_title\>"</code>
 
         Envia os commits na branch atual para o servidor e cria um pull request 
         (ou atualiza um existente) para master.

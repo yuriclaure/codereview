@@ -17,10 +17,10 @@ __reset_master() {
 __move_to_branch() {
 	branch=$1
 
-	changing_to_branch_output=$(git checkout $branch 2>&1);
+	git checkout $branch 2>&1;
 	if ! [ $? = 0 ]; then
-		printf "${RED}Você tem mudanças não comittadas no branch atual.${NC}\n";
-		printf "$changing_to_branch_output";
+		printf "${RED}Erro: você tem alterações não commitadas${NC}\n";
+		printf "Por favor, faça um commit ou um stash das mudanças antes de continuar\n";
 		return 0;
 	fi
 
@@ -30,7 +30,7 @@ __move_to_branch() {
 __get_required_input() {
 	input_message=$1;
 
-	read -p "$input_message [obrigatório]: " -r;
+	read -p "$input_message: " -r;
 	while [ -z "$REPLY" ]; do
 		read -p "$input_message [obrigatório]: " -r;
 	done

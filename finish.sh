@@ -6,13 +6,13 @@ __finish() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if [ $current_git_branch = "master" ]; then
-		printf "${RED}Você não pode finalizar code reviews na master.${NC}";
+		printf "${RED}Você não pode finalizar code reviews na master.${NC}\n";
 		return;
 	fi
 
 	if __has_active_pull_request_for $current_git_branch; then
-		printf "${RED}Não foi possivel finalizar codereview.${NC}\n";
-		printf "Você possui uma pull request ainda ativa nessa branch, aprove ou rejeite para continuar."
+		printf "${RED}Não foi possivel finalizar code review.${NC}\n";
+		printf "Você possui uma pull request ainda ativa nessa branch, aprove ou rejeite para continuar.\n"
 		return;
 	fi
 
@@ -34,5 +34,5 @@ __finish() {
 	git pull &> /dev/null
 	git branch -D $current_git_branch &> /dev/null
 
-	printf "\n${GREEN}Code review de ${current_git_branch} finalizada.";
+	printf "\n${GREEN}Code review de ${current_git_branch} finalizada com sucesso.${NC}\n";
 }
