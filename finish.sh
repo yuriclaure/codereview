@@ -28,11 +28,13 @@ __finish() {
 	    return;
 	fi
 
+	printf "\nFinalizando code review...";
+
 	git fetch origin &> /dev/null
 	git reset --hard origin/$current_git_branch &> /dev/null
 	git checkout master &> /dev/null
 	git pull &> /dev/null
 	git branch -D $current_git_branch &> /dev/null
 
-	printf "\n${GREEN}Code review de ${current_git_branch} finalizada com sucesso.${NC}\n";
+	printf "${CLEAR}${GREEN}Code review de ${current_git_branch} finalizada com sucesso.${NC}\n";
 }

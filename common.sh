@@ -17,7 +17,7 @@ __reset_master() {
 __move_to_branch() {
 	branch=$1
 
-	git checkout $branch 2>&1;
+	git checkout $branch &> /dev/null;
 	if ! [ $? = 0 ]; then
 		printf "${RED}Erro: você tem alterações não commitadas${NC}\n";
 		printf "Por favor, faça um commit ou um stash das mudanças antes de continuar\n";
