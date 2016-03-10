@@ -17,7 +17,7 @@ __push() {
 		return;
 	fi
 
-	__create_pull_request;
+	__create_pull_request "$1";
 }
 
 __create_pull_request() {
@@ -30,12 +30,13 @@ __create_pull_request() {
 	else
 		printf "${GREEN}Criando pull request${NC}\n";
 
-		__get_required_input "Título da pull request";
-		__encode_in_utf8 "$REPLY";
+		if [ -z "$1" ]; then
+			__get_required_input "Digite o título da pull request";
+			__encode_in_utf8 "$REPLY";
+		else
+			__encode_in_utf8 "$1";
+		fi
 		title=$REPLY
-		__get_optional_input "Descrição da pull request";
-		__encode_in_utf8 "$REPLY";
-		description=$REPLY;
 
 		body="{\"sourceRefName\":\"refs/heads/${current_git_branch}\",\"targetRefName\":\"refs/heads/master\",\"title\":\"${title}\",\"description\":\"${description}\"}";
 		RESPONSE_HTTP_CODE=$(curl -sw "%{http_code}" -o /dev/null --ntlm -u : -X POST -H "Content-type: application/json; charset=utf-8" ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 --data "${body}");

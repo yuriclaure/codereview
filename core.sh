@@ -6,9 +6,9 @@ __codereview() {
 		return
 	fi
 
-	if __check_parameters $@; then
+	if __check_parameters "$@"; then
 		return
 	fi
 
-	__route $@;
+	__route "$@";
 }

@@ -5,7 +5,8 @@ __route() {
 		branch_name=$2;
 		__create $branch_name;
 	elif [ $command = "push" ]; then
-		__push;
+		title=$2;
+		__push "$title";
 	elif [ $command = "finish" ]; then
 		__finish;
 	elif [ $command = "help" ]; then
