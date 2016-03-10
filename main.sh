@@ -10,5 +10,10 @@ source $DIR/install.sh
 source $DIR/push.sh
 source $DIR/route.sh
 
+if ! [ -f $DIR/config.sh ]; then
+	__configure;
+fi
+source $DIR/config.sh
+
 alias codereview=__codereview
 alias cr=__codereview

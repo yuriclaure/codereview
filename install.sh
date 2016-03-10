@@ -28,10 +28,3 @@ __configure () {
 
 	printf "${CLEAR}Projetos configurados.";
 }
-
-
-if ! [ -f  $DIR/config.sh ]; then
-	__configure;
-fi
-
-source $DIR/config.sh
