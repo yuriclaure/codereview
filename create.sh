@@ -55,5 +55,5 @@ __create() {
 		__reset_master;
 	fi
 
-	printf "${GREEN}Branch criada e pronta para ser usada para a code review. \nExecute ${RED}codereview push${GREEN} quando estiver pronto.${NC}\n";
+	printf "${GREEN}Branch criada e pronta para ser usada para a code review. \nExecute ${RED}cr push${GREEN} quando estiver pronto.${NC}\n";
 }

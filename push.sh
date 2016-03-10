@@ -6,7 +6,7 @@ __push() {
 	current_git_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 
 	if [ $current_git_branch = "master" ]; then
-		printf "${RED}Impossível criar code review na master. Execute codereview help para ajuda.${NC}\n";
+		printf "${RED}Impossível criar code review na master. Execute cr help para ajuda.${NC}\n";
 		return;
 	fi
 

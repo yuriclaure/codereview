@@ -17,7 +17,7 @@ __check_parameters() {
 
 	command=$1
 	if [ "$command" = "create" ] && [ $# -lt 2 ]; then
-		printf "${RED}Você precisa informar o nome da branch com o comando create. Execute codereview help para ajuda.${NC}\n";
+		printf "${RED}Você precisa informar o nome da branch com o comando create. Execute cr help para ajuda.${NC}\n";
 		return 0;
 	fi
 
@@ -31,7 +31,7 @@ __check_updates() {
 	cd $DIR &> /dev/null
 	git remote update &> /dev/null
 	UPDATES=$(git rev-list HEAD...origin/master --count)
-	
+
 	if [ $UPDATES != 0 ]; then
 		echo "Atualizando comando..."
 
