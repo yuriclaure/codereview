@@ -10,9 +10,9 @@ Recarregue seu bash
 
 <code>$ source ~/.bash_profile</code>
 
-Informe sua url do TFS
+Informe sua url do TFS no formato <code>http://\<url-do-tfs\>/\<collection\>/\<project\></code>:
 
-<b>Exemplo:</b> <code>http://\<url-do-tfs\>/\<collection\>/\<project\></code>
+<b>Exemplo:</b> <code>http://tfs01:8080/tfs/DigithoBrasil/Solu%C3%A7%C3%B5es%20em%20Software</code>
 
 Aguarde a instalação e pronto!
 

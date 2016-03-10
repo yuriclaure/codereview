@@ -5,7 +5,7 @@ __help() {
 	printf "cr push\n\n"
 	printf "\tEnvia os commits na branch atual para o servidor e cria um pull request (ou atualiza um existente) para master.\n\n"
 	printf "cr finish\n\n"
-	printf "\tFinaliza o code review deletando a branch atual e voltando para a master.\n"
+	printf "\tFinaliza o code review deletando a branch atual e voltando para a master.\n\n"
 	printf "cr configure\n\n"
 	printf "\tPara configurar novamente o codereview do zero.\n"
 	return;
