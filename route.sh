@@ -10,6 +10,8 @@ __route() {
 		__finish;
 	elif [ $command = "help" ]; then
 		__help;
+	elif [ $command = "configure"]; then
+		__configure;
 	else
 		printf "${RED}Parametro $command não reconhecido. Execute codereview help para ajuda.${NC}\n";
 	fi

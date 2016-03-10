@@ -2,6 +2,8 @@ __configure () {
 	unset repositories_id;
 	unset codereview_base_url_without_project;
 
+	printf "${GREEN}CONFIGURAÇÃO DO CODE-REVIEW.${NC}\n\n";
+
 	__get_required_input "URL do TFS (Exemplo: http://<url-do-tfs>/<collection>/<project>)";
 	codereview_base_url=$REPLY
 
@@ -26,5 +28,5 @@ __configure () {
 		echo "repositories_id[\"$codereview_base_url/_git/$name\"]=\"$id\"" >> $DIR/settings.sh
 	done
 
-	printf "${CLEAR}Projetos configurados.";
+	printf "${CLEAR}Projetos configurados.\n";
 }
