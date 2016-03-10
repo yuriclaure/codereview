@@ -1,4 +1,6 @@
 __configure () {
+	unset repositories_id;
+	unset codereview_base_url_without_project;
 
 	__get_required_input "URL do TFS (Exemplo: http://<url-do-tfs>/<collection>/<project>)";
 	codereview_base_url=$REPLY
@@ -7,7 +9,7 @@ __configure () {
 	echo "declare -A repositories_id;" >> $DIR/config.sh
 	
 	json=$(curl --ntlm -u : -X GET $codereview_base_url/_apis/git/repositories?api-version=2.0 2> /dev/null)
-	projects=($(printf "$json" | grep -o "[^\"project\"\:]{\"id\"\:\"[^\"]*\",\"name\"\:\"[^\"]*\""))
+	projects=($(echo ${json//[[:blank:]]/} | grep -o "[^\"project\"\:]{\"id\"\:\"[^\"]*\",\"name\"\:\"[^\"]*\""))
 	number_of_projects=${#projects[*]}
 
 	printf "Incluindo projects do TFS.\n";
