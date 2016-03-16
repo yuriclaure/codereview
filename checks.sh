@@ -77,12 +77,20 @@ __check_clean_work_tree() {
     return 1;
 }
 
+__check_connection() {
+	base_url=$1
+	username=$2
+	password=$3
+
+	curl -sw "%{http_code}" -o /dev/null --ntlm -u ${username}:${password} -X GET ${base_url}/_apis/git/repositories?api-version=2.0;
+}
+
 __has_active_pull_request_for() {
 	current_git_branch=$1;
 	current_repo=$(git config remote.origin.url 2>&1);
 	current_repo_id=${repositories_id["${current_repo}"]};
 
-	list_of_pull_requests=$(curl --ntlm -u : ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 2> /dev/null);
+	list_of_pull_requests=$(curl --ntlm -u ${codereview_username}:${codereview_password} ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 2> /dev/null);
 
 	printf "$list_of_pull_requests" | grep -q "\"status\":\"active\",[\"[a-zA-Z]*\":.*,]*\"sourceRefName\":\"refs/heads/$current_git_branch\",\"targetRefName\":\"refs/heads/master\"";
 	PULL_REQUEST_IS_ACTIVE=$?;

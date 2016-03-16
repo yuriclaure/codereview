@@ -1,4 +1,8 @@
 __finish() {
+	if __check_git_repo; then
+		return
+	fi
+	
 	if __check_clean_work_tree; then
 		return;
 	fi

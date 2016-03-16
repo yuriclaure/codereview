@@ -12,8 +12,9 @@ source $DIR/route.sh
 
 if ! [ -f $DIR/settings.sh ]; then
 	__configure;
+else
+	source $DIR/settings.sh
 fi
-source $DIR/settings.sh
 
 alias codereview=__codereview
 alias cr=__codereview

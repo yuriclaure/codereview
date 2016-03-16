@@ -1,4 +1,8 @@
 __push() {
+	if __check_git_repo; then
+		return
+	fi
+	
 	if __check_clean_work_tree; then
 		return;
 	fi
@@ -40,7 +44,7 @@ __create_pull_request() {
 		printf "${GREEN}Enviando code review...${NC}";
 
 		body="{\"sourceRefName\":\"refs/heads/${current_git_branch}\",\"targetRefName\":\"refs/heads/master\",\"title\":\"${title}\",\"description\":\"${description}\"}";
-		RESPONSE_HTTP_CODE=$(curl -sw "%{http_code}" -o /dev/null --ntlm -u : -X POST -H "Content-type: application/json; charset=utf-8" ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 --data "${body}");
+		RESPONSE_HTTP_CODE=$(curl -sw "%{http_code}" -o /dev/null --ntlm -u ${codereview_username}:${codereview_password} -X POST -H "Content-type: application/json; charset=utf-8" ${codereview_base_url_without_project}/_apis/git/repositories/${current_repo_id}/pullrequests?api-version=2.0 --data "${body}");
 
 		if ! [ $RESPONSE_HTTP_CODE = 201 ]; then
 			printf "${CLEAR}${RED}Erro ao criar pull request.${NC}\n";
