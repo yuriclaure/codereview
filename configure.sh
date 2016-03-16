@@ -55,5 +55,5 @@ __configure () {
 
 	printf "${CLEAR}${GREEN}Projetos do TFS configurados com sucesso.${NC}\n";
 
-	source $DIR/settings.sh
+	source $DIR/settings.sh;
 }
