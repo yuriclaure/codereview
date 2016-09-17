@@ -1,3 +1,5 @@
+<h1>ESSE REPOSITORIO ESTÁ DESATIVADO PORQUE O PROJETO FOI REESCRITO EM OUTRA LINGUAGEM: https://github.com/yuriclaure/tfs-pullrequest</h1>
+
 <h1>Code review TFS</h1>
 
 <h2>Instalação</h2>
